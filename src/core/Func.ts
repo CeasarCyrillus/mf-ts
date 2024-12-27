@@ -1,1 +1,0 @@
-export type Func<TInput, TOutput> = (arg: TInput) => TOutput;

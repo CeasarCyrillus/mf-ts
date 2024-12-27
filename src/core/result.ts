@@ -29,6 +29,10 @@ type ResultMethods<TSuccess, TFailure> = {
 }
 
 export type ResultMonad<TSuccess, TFailure> = Result<TSuccess, TFailure> & ResultMethods<TSuccess, TFailure>
+
+// This is functional, but despite my best effort in wrangling the generics,
+// I didn't manage to get the recursive type inference to work in this file (it does in external files, like result.test.ts!)
+
 export const result = <TSuccess, TFailure>(currentResult: Result<TSuccess, TFailure>): ResultMonad<TSuccess, TFailure> => ({
   ...currentResult,
   map: <TValue>(mapFn: (value: TSuccess) => TValue) =>
@@ -43,7 +47,6 @@ export const result = <TSuccess, TFailure>(currentResult: Result<TSuccess, TFail
     if(isSuccess(currentResult)) {
       effect(currentResult.value)
     }
-
     return result(currentResult)
   },
   onFailure: (effect: (value: TFailure) => void) => {

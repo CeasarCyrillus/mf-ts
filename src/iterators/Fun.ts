@@ -1,0 +1,1 @@
+export type Fun<TInput, TOutput> = (arg: TInput) => TOutput;

@@ -130,6 +130,7 @@ const expectFailure = <T>(expectedError: T) => (result: Result<unknown, T>) => {
   }
 }
 
+
 const expectSuccess = <T>(expectedValue: T) => (result: Result<T, unknown>) => {
   expect(isSuccess(result)).toEqual(true)
   if(isSuccess(result)) {

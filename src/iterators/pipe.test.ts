@@ -1,6 +1,6 @@
 import {test, expect, describe} from "vitest"
 import {pipe} from "./pipe.ts";
-
+import {add, divide, prefix} from "./testHarness.ts";
 describe("pipe", () => {
   test("runs all passed functions sequentially", () => {
     const add5 = add(5)
@@ -20,7 +20,3 @@ describe("pipe", () => {
     expect(actual).toEqual(expectedOutput)
   })
 })
-
-const add = (a: number) => (b: number) => a + b
-const divide = (a: number) => (b: number) => b / a
-const prefix = (prefix: string) => (a: number) => `${prefix}${a}`
